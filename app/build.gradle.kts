@@ -3,8 +3,6 @@ plugins {
     alias(libs.plugins.kotlin.android)
     id("org.springframework.boot") version "3.2.0"
     id("io.spring.dependency-management") version "1.1.4"
-    kotlin("jvm") version "1.9.20"
-    kotlin("plugin.spring") version "1.9.20"
 }
 
 android {
@@ -35,7 +33,7 @@ android {
         targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "17"
     }
 }
 
@@ -46,6 +44,7 @@ dependencies {
     implementation("commons-codec:commons-codec:1.15")
     implementation("org.springframework.boot:spring-boot-starter-data-redis")
     implementation("io.github.oshai:kotlin-logging-jvm:5.1.0")
+    implementation(libs.firebase.crashlytics.buildtools)
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")

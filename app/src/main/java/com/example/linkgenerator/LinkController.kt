@@ -1,5 +1,7 @@
 package com.example.linkgenerator
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.*
 @RequestMapping("/api")
 class LinkController(private val linkService: LinkService) {
 
+    @RequiresApi(Build.VERSION_CODES.O)
     @PostMapping("/generate-link")
     fun generateLink(@RequestBody request: GenerateLinkRequest): ResponseEntity<Map<String, String>> {
         if (!linkService.validateSignature(request)) {

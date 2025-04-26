@@ -6,3 +6,9 @@ data class GenerateLinkRequest(
     val isWebView: Boolean,
     val signature: String
 )
+
+data class LinkData(
+    val paymentId: String,
+    val osType: String,
+    val isWebView: Boolean
+)

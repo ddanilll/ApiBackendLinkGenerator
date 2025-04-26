@@ -1,5 +1,7 @@
 package com.example.linkgenerator
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import org.apache.commons.codec.digest.HmacUtils
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.data.redis.core.StringRedisTemplate
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Service
 import org.springframework.web.server.ResponseStatusException
 import java.util.*
 import java.time.Duration
+import org.springframework.http.HttpStatus
 
 @Service
 class LinkService(
@@ -26,6 +29,7 @@ class LinkService(
         return HmacUtils.hmacSha256Hex(secretKey, data) == request.signature
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun generateMaskedUrl(request: GenerateLinkRequest): String {
         val linkId = UUID.randomUUID().toString()
         redisTemplate.opsForValue().set(
